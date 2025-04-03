@@ -1,0 +1,29 @@
+class TrafficSignal extends Thread {
+    private String[] signals = {"Red", "Green", "Yellow"};
+
+    public void run() {
+        while (true) {
+            for (String signal : signals) {
+                System.out.println("Signal: " + signal);
+                try {
+                    if (signal.equals("Red")) {
+                        Thread.sleep(5000); // Red for 5 sec
+                    } else if (signal.equals("Green")) {
+                        Thread.sleep(4000); // Green for 4 sec
+                    } else {
+                        Thread.sleep(2000); // Yellow for 2 sec
+                    }
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+    }
+}
+
+public class TrafficSignalSimulation {
+    public static void main(String[] args) {
+        TrafficSignal signal = new TrafficSignal();
+        signal.start();
+    }
+}
